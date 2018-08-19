@@ -5,21 +5,36 @@ module.exports = {
     create: (req,res) => {
         Todo
             .create({
-                titel : req.body.title,
-                description : req.body.description,
-                dueDate : req.body.dueDate,      
+                title : req.body.title,
+                date : req.body.date,
+                status: req.body.status      
             })
 
             .then(todo => {
+                var mailer = require('node-mailer');
+
+                new mailer.Mail({
+                    from: 'riza.hacktiv8@gmail.com',
+                    to: 'riza.riza69@gmail.com',
+                    subject: 'Your Todo',
+                    body: 'Please check your tuudoo Dashboard',
+                    callback: function(err, data){
+                        console.log(err);
+                        console.log(data);
+                    }
+                });
+
+
                 res.status(200).json({
                     msg:'create success',
                     todo
                 })
+
             })
 
             .catch(err => {
                 res.status(500).json({
-                    msg:'error'
+                    err
                 })
             })
     },

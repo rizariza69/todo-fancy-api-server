@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const userController = require('../controllers/users')
+const auth = require('../middleware/auth')
+
 
 router.post('/register', userController.register)
-      .post('/login',userController.login)
+      .post('/login', userController.login)
       .post('/signin/facebook',userController.loginFb)
       .get('/', userController.findAll)
       .get('/:id', userController.findOne)

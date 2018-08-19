@@ -3,12 +3,11 @@ const Schema = mongoose.Schema
 
 
 const todoSchema =  new Schema({
-    titel : String,
-    description : String,
-    dueDate : String,
+    title : String,
+    date : String,
     status: {
         type : String,
-        default: 'not done'
+        default: false
     }      
 },
 {
